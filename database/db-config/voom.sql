@@ -19,7 +19,7 @@ create table staff(
     last_name varchar(100),
     email varchar(100),
     password varchar(15),
-    primary key(staff_id)    
+    primary key(staff_id)   
 );
 
 create table payment(
@@ -28,7 +28,7 @@ create table payment(
     amount integer,
     staff_id integer,
     primary key(payment_id),
-    foreign key(staff_id) references staff(staff_id)
+    foreign key(staff_id) references staff(staff_id) ON DELETE CASCADE
 );
 create table tickets(
 	ticket_id integer auto_increment,
@@ -36,9 +36,9 @@ create table tickets(
     bus_id integer,
     payment_id integer,
     primary key(ticket_id),
-    foreign key(staff_id) references staff(staff_id),
-    foreign key(bus_id) references buses(bus_id),
-    foreign key(payment_id) references payment(payment_id)
+    foreign key(staff_id) references staff(staff_id) ON DELETE CASCADE ,
+    foreign key(bus_id) references buses(bus_id) ON DELETE CASCADE,
+    foreign key(payment_id) references payment(payment_id) ON DELETE CASCADE
 
 );
 
@@ -49,7 +49,7 @@ first_name varchar(100),
 last_name varchar(100),
 pin integer,
 primary key(driver_id),
-foreign key(bus_id) references buses(bus_id)
+foreign key(bus_id) references buses(bus_id) ON DELETE CASCADE
 );
 
 
