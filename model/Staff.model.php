@@ -10,13 +10,13 @@ require_once(__DIR__."/../config/database.config.php");
 class Staff extends Database {
     private $table = "staff";
 
-    function driverTest(){
+    function staffTest(){
         if(!$this->connect()) return $this->connection_error;
-        return array('driver'=>'welcome to staff route');
+        return array('satff'=>'welcome to staff route');
     }
 
-    // Get all drivers
-    public function getAllDrivers(){
+    // Get all staffs
+    public function getAllStaff(){
         if(!$this->connect()) return;
 
         $sql = "SELECT * from $this->table";
@@ -26,96 +26,85 @@ class Staff extends Database {
         return $stmt;
     }
 
-    // Get a single driver
-    public function getDriver($id){
+    // Get a single staff
+    public function getStaff($id){
         if(!$this->connect()) return;
 
-        $sql = "SELECT * from $this->table WHERE driver_id=$id";
+        $sql = "SELECT * from $this->table WHERE staff_id=$id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
 
         return $stmt;
     }
+  
 
-    // Insert a driver
-    public function addDriver($bus_id, $first_name , $last_name , $pin){
+    // Insert a staff
+    public function addStaff($first_name , $last_name ,$email, $password){
 
         if(!$this->connect()) return;
 
-        $sql = "INSERT INTO $this->table (bus_id, first_name,last_name,pin) 
-				VALUES(:bus_id, :first_name, :last_name, :pin)";
+        $sql = "INSERT INTO $this->table (first_name,last_name,email,password) 
+				VALUES(:first_name, :last_name, :email, :password)";
 
 		$stmt = $this->conn->prepare($sql);
 
 
         //bind data
-        $stmt->bindParam(':bus_id', $bus_id);
         $stmt->bindParam(':first_name', $first_name);
         $stmt->bindParam(':last_name', $last_name);
-        $stmt->bindParam(':pin', $pin);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
 
         if($stmt->execute()){
-            return json_encode(array('ok' => true, 'message' => 'driver was successfully added'));
+            return json_encode(array('ok' => true, 'message' => 'staff was successfully added'));
         }
         else{
-            return json_encode(array('ok' => false, 'message' => 'failed to add driver'));
+            return json_encode(array('ok' => false, 'message' => 'failed to add staff'));
         }
     }
 
-    // Get a total ticket count
-    public function getDriverCount(){
-        if(!$this->connect()) return;
 
-        $sql = "SELECT COUNT(1) from $this->table";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-
-        return $stmt;
-    }
-
-    // Delete a driver
-    public function deleteDriver($driver_id){
+    // Delete a staff
+    public function deleteStaff($staff_id){
         if(!$this->connect()) return;
 
         // sql to delete a record
-        $sql = "DELETE FROM $this->table WHERE driver_id=:driver_id";
+        $sql = "DELETE FROM $this->table WHERE staff_id=:staff_id";
         $stmt = $this->conn->prepare($sql);
 
         //bind data
-        $stmt->bindParam(':driver_id', $driver_id);
+        $stmt->bindParam(':staff_id', $staff_id);
 
         if($stmt->execute()){
-            return json_encode(array('ok' => true, 'message' => 'Driver was Successfully deleted'));
+            return json_encode(array('ok' => true, 'message' => 'staff was Successfully deleted'));
         }
         else{
-            return json_encode(array('ok' => false, 'message' => 'failed to delete Driver'));
+            return json_encode(array('ok' => false, 'message' => 'failed to delete staff'));
         }
     }
   
 
     // Update a driver
-    public function updateDriver($driver_id,$bus_id , $first_name , $last_name , $pin){
+    public function updateStaff($staff_id,$first_name , $last_name ,$email, $password){
 
         if(!$this->connect()) return;
         
-        $sql = "UPDATE $this->table SET bus_id=:bus_id, first_name=:first_name,last_name=:last_name,pin=:pin 
-				WHERE driver_id=$driver_id";
+        $sql = "UPDATE $this->table SET first_name=:first_name,last_name=:last_name,email=:email,password=:password 
+				WHERE staff_id=$staff_id";
     
 
 		$stmt = $this->conn->prepare($sql);
 
-
         //bind data
-        $stmt->bindParam(':bus_id', $bus_id);
         $stmt->bindParam(':first_name', $first_name);
         $stmt->bindParam(':last_name', $last_name);
-        $stmt->bindParam(':pin', $pin);
-
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
         if($stmt->execute()){
-            return json_encode(array('ok' => true, 'message' => 'Driver was successfully updated'));
+            return json_encode(array('ok' => true, 'message' => 'Staff was successfully updated'));
         }
         else{
-            return json_encode(array('ok' => false, 'message' => 'failed to update driver'));
+            return json_encode(array('ok' => false, 'message' => 'failed to update staff'));
         }
     }
 
