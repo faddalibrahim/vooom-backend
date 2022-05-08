@@ -65,9 +65,16 @@ foreign key(bus_id) references buses(bus_id) ON DELETE CASCADE
 -- Insert Queries
 
 -- Buse
-insert into buses(bus_no,start_loc, destination,departure_time,arrival_time,capacity,availability) value('GT-12','Ashesi','Kwabenya','5:00','7:00',30,'yes');
+insert into buses(bus_no,start_loc, destination,departure_time,arrival_time,capacity,availability) value('GT-12','Ashesi','Kwabenya','5:00','8:00',50,'yes');
+insert into buses(bus_no,start_loc, destination,departure_time,arrival_time,capacity,availability) value('GT-13','Ashesi','Kwabenya','5:00','3:00',60,'no');
+insert into buses(bus_no,start_loc, destination,departure_time,arrival_time,capacity,availability) value('GT-14','Ashesi','Kwabenya','5:00','2:00',70,'no');
+insert into buses(bus_no,start_loc, destination,departure_time,arrival_time,capacity,availability) value('GT-15','Ashesi','Kwabenya','5:00','1:00',80,'yes');
+insert into buses(bus_no,start_loc, destination,departure_time,arrival_time,capacity,availability) value('GT-16','Ashesi','Kwabenya','5:00','10:00',40,'yes');
 
 insert into staff(first_name,last_name,email,password) values('Gideon','Bonsu','gideon.bonsu@ashesi.edu.gh','tui');
+insert into staff(first_name,last_name,email,password) values('Silas','Sangmin','silas.sangmin@ashesi.edu.gh','bui');
+insert into staff(first_name,last_name,email,password) values('Gideon','Bonsu','gideon.bonsu@ashesi.edu.gh','dui');
+insert into staff(first_name,last_name,email,password) values('Gideon','Bonsu','gideon.bonsu@ashesi.edu.gh','oui');
 
 insert into payment(date_of_payment,amount) values('02-02-22',3);
 
