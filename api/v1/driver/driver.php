@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $data = (array) json_decode(file_get_contents("php://input"));
 
 
-    echo addBus($data['bus_no'], $data['start_loc'], $data['destination'], $data['departure_time'], $data['arrival_time'], $data['capacity'], $data['availability']);
+    echo addDriver($data['bus_id'], $data['first_name'], $data['last_name'], $data['pin']);
 }
 
 
@@ -31,7 +31,7 @@ if($_SERVER['REQUEST_METHOD'] === 'DELETE'){
 
     $data = (array) json_decode(file_get_contents("php://input"));
 
-    return deleteBus($data["bus_id"]);
+    return deleteDriver($data["driver_id"]);
     // echo  $data['bus_id'];
 }
 
@@ -41,7 +41,7 @@ if($_SERVER['REQUEST_METHOD'] === 'PUT'){
     // exit(json_encode(var_dump($_POST)));
     $data = (array) json_decode(file_get_contents("php://input"));
     
-    echo updateBus($data["bus_id"],$data["bus_no"],$data["start_loc"],$data["destination"],$data["departure_time"],$data["arrival_time"],$data["capacity"],$data["availability"]);
+    echo updateDriver($data['driver_id'],$data['bus_id'], $data['first_name'], $data['last_name'], $data['pin']);
     
 }
 

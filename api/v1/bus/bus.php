@@ -43,8 +43,6 @@ if($_SERVER['REQUEST_METHOD'] === 'PUT'){
     
 }
 
-// echo json_encode(runBusTest());
-// echo json_encode(getAllBuses());
-// echo json_encode(getBus("1"));
+
 
 ?>

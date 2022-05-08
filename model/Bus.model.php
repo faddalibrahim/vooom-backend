@@ -83,7 +83,7 @@ class Bus extends Database {
     public function updateBus($bus_id,$bus_no, $start_loc, $destination, $departure_time, $arrival_time, $capacity, $availability){
 
         if(!$this->connect()) return;
-        "UPDATE MyGuests SET lastname='Doe' WHERE id=2";
+      
         $sql = "UPDATE $this->table SET bus_no=:bus_no, start_loc=:start_loc,destination=:destination,departure_time=:departure_time,arrival_time=:arrival_time,capacity= :capacity, availability=:availability 
 				WHERE bus_id=$bus_id";
 
