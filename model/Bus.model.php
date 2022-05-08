@@ -79,8 +79,6 @@ class Bus extends Database {
         }
     }
     public function updateBus(){}
-    public function searchBus(){}
-    public function selectActiveBus(){}
 
 }
 
