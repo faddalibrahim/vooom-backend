@@ -70,7 +70,7 @@ class Bus extends Database {
 
         //bind data
         $stmt->bindParam(':bus_id', $bus_id);
-        
+
         if($stmt->execute()){
             return json_encode(array('ok' => true, 'message' => 'bus was Successfully deleted'));
         }
@@ -78,9 +78,34 @@ class Bus extends Database {
             return json_encode(array('ok' => false, 'message' => 'failed to delete bus'));
         }
     }
-    public function updateBus(){}
-    public function searchBus(){}
-    public function selectActiveBus(){}
+  
+
+    public function updateBus($bus_id,$bus_no, $start_loc, $destination, $departure_time, $arrival_time, $capacity, $availability){
+
+        if(!$this->connect()) return;
+        "UPDATE MyGuests SET lastname='Doe' WHERE id=2";
+        $sql = "UPDATE $this->table SET bus_no=:bus_no, start_loc=:start_loc,destination=:destination,departure_time=:departure_time,arrival_time=:arrival_time,capacity= :capacity, availability=:availability 
+				WHERE bus_id=$bus_id";
+
+		$stmt = $this->conn->prepare($sql);
+
+
+        //bind data
+        $stmt->bindParam(':bus_no', $bus_no);
+        $stmt->bindParam(':start_loc', $start_loc);
+        $stmt->bindParam(':destination', $destination);
+        $stmt->bindParam(':departure_time', $departure_time);
+        $stmt->bindParam(':arrival_time', $arrival_time);
+        $stmt->bindParam(':capacity', $capacity);
+        $stmt->bindParam(':availability', $availability);
+
+        if($stmt->execute()){
+            return json_encode(array('ok' => true, 'message' => 'bus was successfully updated'));
+        }
+        else{
+            return json_encode(array('ok' => false, 'message' => 'failed to update bus'));
+        }
+    }
 
 }
 

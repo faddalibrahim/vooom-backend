@@ -35,12 +35,13 @@ if($_SERVER['REQUEST_METHOD'] === 'DELETE'){
 
 // PUT REQUESTS
 
-// if($_SERVER['REQUEST_METHOD'] === 'POST'){
-//     // exit(json_encode(var_dump($_POST)));
-//     $data = json_decode(file_get_contents("php://input"));
-
-//     echo json_encode(getBus($data->bus_id));
-// }
+if($_SERVER['REQUEST_METHOD'] === 'PUT'){
+    // exit(json_encode(var_dump($_POST)));
+    $data = (array) json_decode(file_get_contents("php://input"));
+    
+    echo updateBus($data["bus_id"],$data["bus_no"],$data["start_loc"],$data["destination"],$data["departure_time"],$data["arrival_time"],$data["capacity"],$data["availability"]);
+    
+}
 
 // echo json_encode(runBusTest());
 // echo json_encode(getAllBuses());
