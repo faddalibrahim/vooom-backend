@@ -65,7 +65,14 @@ function getBus($id){
 }
 
 
-function addBus(){}
+function addBus($bus_no, $start_loc, $destination, $departure_time, $arrival_time, $capacity, $availability){
+
+    $bus = new Bus();
+    $result = $bus->addBus($bus_no, $start_loc, $destination, $departure_time, $arrival_time, $capacity, $availability);
+
+    return $result;
+
+}
 
 function deleteBus(){}
 

@@ -35,8 +35,31 @@ class Bus extends Database {
         return $stmt;
     }
 
-    public function addBus(){
+    public function addBus($bus_no, $start_loc, $destination, $departure_time, $arrival_time, $capacity, $availability){
 
+        if(!$this->connect()) return;
+
+        $sql = "INSERT INTO $this->table (bus_no, start_loc,destination,departure_time,arrival_time,capacity, availability) 
+				VALUES(:bus_no, :start_loc, :destination, :departure_time, :arrival_time, :capacity, :availability)";
+
+		$stmt = $this->conn->prepare($sql);
+
+
+        //bind data
+        $stmt->bindParam(':bus_no', $bus_no);
+        $stmt->bindParam(':start_loc', $start_loc);
+        $stmt->bindParam(':destination', $destination);
+        $stmt->bindParam(':departure_time', $departure_time);
+        $stmt->bindParam(':arrival_time', $arrival_time);
+        $stmt->bindParam(':capacity', $capacity);
+        $stmt->bindParam(':availability', $availability);
+
+        if($stmt->execute()){
+            return json_encode(array('ok' => true, 'message' => 'bus was successfully added'));
+        }
+        else{
+            return json_encode(array('ok' => false, 'message' => 'failed to add bus'));
+        }
     }
     public function deleteBus(){}
     public function updateBus(){}
