@@ -61,7 +61,23 @@ class Bus extends Database {
             return json_encode(array('ok' => false, 'message' => 'failed to add bus'));
         }
     }
-    public function deleteBus(){}
+    public function deleteBus($bus_id){
+        if(!$this->connect()) return;
+
+        // sql to delete a record
+        $sql = "DELETE FROM $this->table WHERE bus_id=:bus_id";
+        $stmt = $this->conn->prepare($sql);
+
+        //bind data
+        $stmt->bindParam(':bus_id', $bus_id);
+        
+        if($stmt->execute()){
+            return json_encode(array('ok' => true, 'message' => 'bus was Successfully deleted'));
+        }
+        else{
+            return json_encode(array('ok' => false, 'message' => 'failed to delete bus'));
+        }
+    }
     public function updateBus(){}
     public function searchBus(){}
     public function selectActiveBus(){}

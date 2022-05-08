@@ -25,7 +25,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 // DELETE REQUESTS
 
 if($_SERVER['REQUEST_METHOD'] === 'DELETE'){
-    echo "yess delete request";
+    // echo "yess delete request";
+
+    $data = (array) json_decode(file_get_contents("php://input"));
+
+    return deleteBus($data["bus_id"]);
+    // echo  $data['bus_id'];
 }
 
 // PUT REQUESTS
