@@ -42,6 +42,13 @@ create table tickets(
 
 );
 
+create table notifications(
+	notification_id integer auto_increment,
+	message varchar(200),
+	sender varchar(100),
+	dateSent date
+);
+
 create table drivers(
 driver_id integer auto_increment,
 bus_id integer,
@@ -52,6 +59,10 @@ primary key(driver_id),
 foreign key(bus_id) references buses(bus_id) ON DELETE CASCADE
 );
 
+  final NotificationSender sender;
+  final String message;
+  final DateTime dateSent;
+  final List<NotificationAction>? actions;
 
 -- QUERIES
 
