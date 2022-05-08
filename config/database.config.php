@@ -7,7 +7,7 @@
 		private $user = USERNAME;
 		private $password = PASSWORD;
 		private $name = DB_NAME;
-		private $conn;
+		protected $conn;
 		protected $connection_error;
 		protected $connection_success;
 		
