@@ -80,8 +80,13 @@ function deleteBus($bus_id){
     return $result;
 }
 
-function updateBus(){}
+function updateBus($bus_id,$bus_no, $start_loc, $destination, $departure_time, $arrival_time, $capacity, $availability){
+    $bus = new Bus();
+    $result = $bus->updateBus($bus_id,$bus_no, $start_loc, $destination, $departure_time, $arrival_time, $capacity, $availability);
 
-function searchBus($column, $value){}
+    return $result;
+}
+
+
 
 ?>
