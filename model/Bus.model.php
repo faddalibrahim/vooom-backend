@@ -35,6 +35,14 @@ class Bus extends Database {
         return $stmt;
     }
 
+    public function addBus(){
+
+    }
+    public function deleteBus(){}
+    public function updateBus(){}
+    public function searchBus(){}
+    public function selectActiveBus(){}
+
 }
 
 

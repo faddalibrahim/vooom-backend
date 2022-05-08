@@ -64,4 +64,13 @@ function getBus($id){
     exit(json_encode(array('data' => $bus)));
 }
 
+
+function addBus(){}
+
+function deleteBus(){}
+
+function updateBus(){}
+
+function searchBus($column, $value){}
+
 ?>
