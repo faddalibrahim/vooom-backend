@@ -43,7 +43,7 @@ create table tickets(
 );
 
 create table notifications(
-	notification_id integer auto_increment,
+	notification_id integer auto_increment primary key,
 	message varchar(200),
 	sender varchar(100),
 	dateSent date
