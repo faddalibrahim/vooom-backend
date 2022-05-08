@@ -36,4 +36,32 @@ function getAllBuses(){
     exit(json_encode(array('data' => $all_buses)));
 }
 
+function getBus($id){
+    $bus = new Bus();
+    $stmt = $bus->getBus($id);
+
+    if (!$stmt->rowCount()) exit(json_encode(array('ok' => false, 'message' => "no such bus")));
+
+    $bus = array('ok' => true, 'bus' => null);
+
+    while($data = $stmt->fetch()){
+        extract($data);
+
+        $buss = array(
+            'bus_id' => $bus_id,
+            'bus_no' => $bus_no,
+            'start_loc' => $start_loc,
+            'destination' => $destination,
+            'departure_time' => $departure_time,
+            'arrival_time' => $arrival_time,
+            'capacity' => $capacity,
+            'availability' => $availability
+        );
+
+        $bus['bus'] = $buss;
+    }
+
+    exit(json_encode(array('data' => $bus)));
+}
+
 ?>

@@ -25,6 +25,16 @@ class Bus extends Database {
         return $stmt;
     }
 
+    public function getBus($id){
+        if(!$this->connect()) return;
+
+        $sql = "SELECT * from $this->table WHERE bus_id=$id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
 }
 
 
