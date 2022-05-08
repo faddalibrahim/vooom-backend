@@ -59,11 +59,7 @@ primary key(driver_id),
 foreign key(bus_id) references buses(bus_id) ON DELETE CASCADE
 );
 
-  final NotificationSender sender;
-  final String message;
-  final DateTime dateSent;
-  final List<NotificationAction>? actions;
-
+  
 -- QUERIES
 
 -- Insert Queries

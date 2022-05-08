@@ -1,11 +1,9 @@
 <?php
 
-require_once __DIR__."/../../../require/headers.require.php";
+require_once(__DIR__."/../../../require/headers.require.php");
 
-require_once __DIR__."/../../../class/admin/Admin.class.php";
+require_once(__DIR__."/../../../controller/Admin.controller.php");
 
-$admin = new Admin;
-
-print_r(json_encode($admin -> adminTest()));
+echo json_encode(runAdminTest());
 
 ?>
