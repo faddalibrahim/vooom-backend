@@ -74,7 +74,11 @@ function addBus($bus_no, $start_loc, $destination, $departure_time, $arrival_tim
 
 }
 
-function deleteBus(){}
+function deleteBus($bus_id){
+    $bus = new Bus();
+    $result=$bus->deleteBus($bus_id);
+    return $result;
+}
 
 function updateBus(){}
 
