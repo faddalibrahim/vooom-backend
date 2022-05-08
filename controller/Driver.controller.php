@@ -59,24 +59,24 @@ function getDriver($id){
 }
 
 
-function addBus($bus_no, $start_loc, $destination, $departure_time, $arrival_time, $capacity, $availability){
+function addDriver($bus_id , $first_name , $last_name , $pin){
 
-    $driver = new Bus();
-    $result = $driver->addBus($bus_no, $start_loc, $destination, $departure_time, $arrival_time, $capacity, $availability);
+    $driver = new Driver();
+    $result = $driver->addDriver($bus_id , $first_name , $last_name , $pin);
 
     return $result;
 
 }
 
-function deleteBus($bus_id){
-    $driver = new Bus();
-    $result=$driver->deleteBus($bus_id);
+function deleteDriver($driver_id){
+    $driver = new Driver();
+    $result=$driver->deleteDriver($driver_id);
     return $result;
 }
 
-function updateBus($bus_id,$bus_no, $start_loc, $destination, $departure_time, $arrival_time, $capacity, $availability){
-    $driver = new Bus();
-    $result = $driver->updateBus($bus_id,$bus_no, $start_loc, $destination, $departure_time, $arrival_time, $capacity, $availability);
+function updateDriver($driver_id,$bus_id , $first_name , $last_name , $pin){
+    $driver = new Driver();
+    $result = $driver->updateDriver($driver_id,$bus_id , $first_name , $last_name , $pin);
 
     return $result;
 }
