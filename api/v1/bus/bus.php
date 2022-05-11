@@ -1,11 +1,23 @@
+
 <?php
+
+/**
+ * * handle null exceptions for getPayload() to avoid making queries for null column name
+ *
+ * * create constants for 
+ */
 
 require_once(__DIR__."/../../../require/headers.require.php");
 
 require_once(__DIR__."/../../../controller/Bus.controller.php");
 
+require_once(__DIR__."/../../../functions/payload.function.php");
+
+require_once(__DIR__."/../../../constants/constants.php");
+
+
 // GET REQUESTS
-if($_SERVER['REQUEST_METHOD'] === 'GET'){
+if($_SERVER[REQUEST_METHOD] === GET){
 
     (count($_GET) === 0 
         ? exit(json_encode(getAllBuses())) : array_key_exists('bus_id',$_GET)) 
@@ -13,30 +25,28 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
 }
 
 // POST REQUESTS
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
+if($_SERVER[REQUEST_METHOD] === POST){
 
-    $data = (array) json_decode(file_get_contents("php://input"));
+    $payload = getPayload();
 
 
-    echo addBus($data['bus_no'], $data['start_loc'], $data['destination'], $data['departure_time'], $data['arrival_time'], $data['capacity'], $data['availability']);
+    exit(addBus($payload['bus_no'], $payload['start_loc'], $payload['destination'], $payload['departure_time'], $payload['arrival_time'], $payload['capacity'], $payload['availability']));
 }
 
 
 // DELETE REQUESTS
-if($_SERVER['REQUEST_METHOD'] === 'DELETE'){
+if($_SERVER[REQUEST_METHOD] === DELETE){
 
-    $data = (array) json_decode(file_get_contents("php://input"));
-
-    echo deleteBus($data["bus_id"]);
+    $payload = getPayload();
+    exit(deleteBus($payload["bus_id"]));
 }
 
 // PUT REQUESTS
 
-if($_SERVER['REQUEST_METHOD'] === 'PUT'){
-    // exit(json_encode(var_dump($_POST)));
-    $data = (array) json_decode(file_get_contents("php://input"));
+if($_SERVER[REQUEST_METHOD] === PUT){
+    $payload = getPayload();
     
-    echo updateBus($data["bus_id"],$data["bus_no"],$data["start_loc"],$data["destination"],$data["departure_time"],$data["arrival_time"],$data["capacity"],$data["availability"]);
+    echo updateBus($payload["bus_id"],$payload["bus_no"],$payload["start_loc"],$payload["destination"],$payload["departure_time"],$payload["arrival_time"],$payload["capacity"],$payload["availability"]);
     
 }
 
